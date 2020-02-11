@@ -185,11 +185,20 @@ public class SudokuBoard2 {
             for (int x = 0; x < SIZE; x++, pos++) {
                 if (x % 3 == 0) System.out.print("| ");
                 int allowed = cells[pos];
-                System.out.print(Integer.bitCount(allowed) > 1 ? ' ' : '0'+Integer.numberOfTrailingZeros(allowed));
+                System.out.print(Integer.bitCount(allowed) > 1 ? ' ' : (char)('0'+Integer.numberOfTrailingZeros(allowed)));
                 System.out.print(' ');
             }
             System.out.println("|");
         }
         System.out.println(" -----------------------");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof SudokuBoard2)) {
+            return false;
+        }
+        SudokuBoard2 other = (SudokuBoard2)obj;
+        return Arrays.equals(cells, other.cells);
     }
 }
